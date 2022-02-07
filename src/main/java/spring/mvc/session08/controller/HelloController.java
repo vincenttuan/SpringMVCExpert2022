@@ -2,6 +2,7 @@ package spring.mvc.session08.controller;
 
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.websocket.server.PathParam;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import spring.mvc.session08.entity.User;
 
 @Controller
 @RequestMapping(value = "/hello")
@@ -103,7 +106,7 @@ public class HelloController {
 	}
 	
 	/*
-	 * 得到多筆參數資料
+	 * 7. 多筆參數資料
 	 * 子路徑：/age?age=18&age=19&age=20
 	 * 並計算總和與平均
 	 */
@@ -118,6 +121,59 @@ public class HelloController {
 		double avg = stat.getAverage(); // 平均
 		return String.format("%s sum: %d avg: %.1f", ageList, sum, avg);
 	}
+	
+	/* 
+	 * 8. 得到多筆 score 資料 (Lab 練習)
+     * 子路徑：/max?score=80&score=100&score=50
+     * 結果得到：max score = 100
+	 * 子路徑：/min?score=80&score=100&score=50
+     * 結果得到：min score = 80
+	 * 建議使用：IntSummaryStatistics
+	 * */
+	@RequestMapping("{maxOrMin}")
+	@ResponseBody
+	public String maxOrMin(@PathVariable("maxOrMin") String maxOrMin,
+						   @RequestParam("score") List<Integer> scores) {
+		String str = "%s score = %d";
+		IntSummaryStatistics stat = scores.stream()
+									.mapToInt(Integer::intValue)
+									.summaryStatistics();
+		switch (maxOrMin) {
+			case "max":
+				str = String.format(str, maxOrMin, stat.getMax());
+				break;
+			case "min":
+				str = String.format(str, maxOrMin, stat.getMin());
+				break;	
+			default:
+				str = "None";
+				break;
+		}
+		return str;
+	}
+	
+	/*
+	 * Map 參數
+	 * 子路徑：/person?name=John&score=100&age=18&pass=true
+	 * 子路徑：/person?name=Mary&score=90&age=20&level=2
+	 * 常與於 form 表單傳來的參數
+	 * */
+	@RequestMapping("/person")
+	@ResponseBody
+	public String getPerson(@RequestParam Map<String, String> person) {
+		return person.toString();
+	}
+	
+	/*
+	 * pojo(entity) 參數自動匹配
+	 * 子路徑：/user?name=John&age=18
+	 * */
+	@RequestMapping("/user")
+	@ResponseBody
+	public String getUser(User user) { // 參數會自動匹配
+		return user.toString();
+	}
+	
 	
 	
 }
