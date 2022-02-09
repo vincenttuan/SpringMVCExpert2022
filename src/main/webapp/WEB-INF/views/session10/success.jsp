@@ -18,7 +18,9 @@
 	        商品名稱：${ product.productName }<p />
 	        商品數量：${ product.quantity }<p />
 	        商品價格：${ product.price }<p />
-	        <button type="button" class="pure-button pure-button-primary">back</button>
+	        <button type="button"
+	        		onclick="window.location.href='/spring.mvc/mvc/product/';" 
+	        		class="pure-button pure-button-primary">back</button>
 	    </fieldset>
 	</form>
 </body>
