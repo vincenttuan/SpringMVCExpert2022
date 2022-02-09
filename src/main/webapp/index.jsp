@@ -9,5 +9,6 @@
 </head>
 <body>
 	Hello JSP <%=new Date() %>
+	
 </body>
 </html>

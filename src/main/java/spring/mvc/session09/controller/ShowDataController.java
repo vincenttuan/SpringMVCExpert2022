@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -119,13 +121,13 @@ public class ShowDataController {
 		attr.addAttribute("age", 18);
 		return "redirect:/hello.jsp";
 	}
-
+	
 	// 重定向 redirect: 帶參數 II
-	@RequestMapping("/case13")
+	@PostMapping("/case13")
 	public String case13(RedirectAttributes attr) {
 		attr.addAttribute("username", "Vincent");
-		attr.addFlashAttribute("age", 18); // 不會加到網址列後面而是放在 Spring 的 Session 物件中
-		return "redirect:/hello.jsp";
+		attr.addFlashAttribute("age", 18); // addFlashAttribute 不會加到網址列後面而是放在 Spring 的 Session 物件中 
+		return "redirect:case14";
 	}
-
+	
 }
