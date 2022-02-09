@@ -26,11 +26,13 @@ public class LottoController {
 	
 	private List<Set<Integer>> lottos = new ArrayList<>(); // 存放歷史紀錄
 	
+	// lotto 主畫面
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		return "session09/lotto";
 	}
 	
+	// 取得最新電腦選號
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public String get(Model model) {
 		// 樂透 539：1~39 取出 5 個不重複的數字
@@ -42,6 +44,7 @@ public class LottoController {
 		return "session09/lotto";
 	}
 	
+	// 更新指定位置的電腦選號資料
 	@RequestMapping(value = "/update/{index}", method = RequestMethod.GET)
 	public String update(Model model, @PathVariable("index") int index) {
 		// 樂透 539：1~39 取出 5 個不重複的數字
@@ -52,6 +55,7 @@ public class LottoController {
 		return "session09/lotto";
 	}
 	
+	// 更新指定位置的電腦選號資料
 	@RequestMapping(value = "/delete/{index}", method = RequestMethod.GET)
 	public String delete(Model model, @PathVariable("index") int index) {
 		lottos.remove(index); // 移除指定位置(index)的資料
@@ -60,6 +64,7 @@ public class LottoController {
 		return "session09/lotto";
 	}
 	
+	// 隨機產出最新電腦選號
 	private Set<Integer> getRandomLotto() {
 		Random r = new Random();
 		// 樂透 539：1~39 取出 5 個不重複的數字
@@ -70,6 +75,7 @@ public class LottoController {
 		return lotto;
 	}
 	
+	// 統計每一個號碼出現的次數
 	@RequestMapping(value = "/stat", method = RequestMethod.GET)
 	public String stat(Model model) {
 		Map<Integer, Long> stat = getStatistics(); // 取得分組統計資料
@@ -78,7 +84,7 @@ public class LottoController {
 		return "session09/lotto";
 	}
 	
-	// 分組統計資料
+	// 分組統計資料與排序
 	private Map<Integer, Long> getStatistics() {
 		// 將所有資料彙集 (flatMap 資料拆散、collect 資料收集)
 		List<Integer> nums = lottos.stream().flatMap(lotto -> lotto.stream()).collect(Collectors.toList());
@@ -92,6 +98,5 @@ public class LottoController {
 			.forEachOrdered(e -> statAndSort.put(e.getKey(), e.getValue()));
 		return statAndSort;
 	}
-	
 	
 }

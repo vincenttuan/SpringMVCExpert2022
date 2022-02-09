@@ -22,7 +22,26 @@
 	<button type="button"
 		onclick="window.location.href='/spring.mvc/mvc/lotto/stat';"
 		class="pure-button pure-button-primary">統計運算</button>
-	<div>${ stat }</div>
+	<div>
+		<table class="pure-table pure-table-bordered">
+			<thead>
+				<tr>
+					<th nowrap>號碼</th>
+					<c:forEach var="s" items="${ stat }">
+						<th nowrap>${ s.key }</th>
+					</c:forEach>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td nowrap>次數</td>
+					<c:forEach var="s" items="${ stat }">
+						<td nowrap>${ s.value }</td>
+					</c:forEach>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<p />
 	歷史紀錄 III：
 	<table class="pure-table pure-table-bordered">
