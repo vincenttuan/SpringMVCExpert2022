@@ -9,7 +9,8 @@
   </li>
 </ul>
 <hr />
-備註：<br />
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")  //返回時間類型<br />
+問題探討：<br />
+1. springmvc在接收時間類型的時候，報 Failed to convert value of type 'java.lang.String' to required type 'java.util.Date'的錯誤，應該怎麼解決呢?<br />
+@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")  // 返回時間類型<br />
 @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") //接收時間類型<br />
 private Date createTime; // 建檔日期<br />
