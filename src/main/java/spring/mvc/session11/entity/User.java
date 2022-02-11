@@ -2,11 +2,25 @@ package spring.mvc.session11.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
+
 public class User {
 	
 	private String name;
 	private Integer age;
+	
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8") // 返回時間類型
+	@DateTimeFormat(pattern="yyyy-MM-dd") //接收時間類型
 	private Date birth;
+	
+	private String education;
+	private String sex;
+	private String interest;
+	private String resume;
 	
 	public String getName() {
 		return name;
@@ -26,10 +40,36 @@ public class User {
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
-	
+	public String getEducation() {
+		return education;
+	}
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getInterest() {
+		return interest;
+	}
+	public void setInterest(String interest) {
+		this.interest = interest;
+	}
+	public String getResume() {
+		return resume;
+	}
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", age=" + age + ", birth=" + birth + "]";
+		return "User [name=" + name + ", age=" + age + ", birth=" + birth + ", education=" + education + ", sex=" + sex
+				+ ", interest=" + interest + ", resume=" + resume + "]";
 	}
+	
+	
 	
 }
