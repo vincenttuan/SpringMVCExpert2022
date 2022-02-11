@@ -65,7 +65,7 @@ public class ProductRestController {
 		products.set(index, product);
 		// 將 product 資訊傳遞給 /updateOk 再傳給 success.jsp 顯示，可防止二次 submit
 		attr.addFlashAttribute(product);
-		return "redirect:../updateOk";
+		return "redirect:updateOk";
 	}
 	
 	// 刪除商品
@@ -73,7 +73,7 @@ public class ProductRestController {
 	public String delete(@PathVariable("index") int index) {
 		// 進行刪除程序...
 		products.remove(index);
-		return "redirect:../"; // 重導到首頁
+		return "redirect:./"; // 重導到首頁
 	}
 	
 	
