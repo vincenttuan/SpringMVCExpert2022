@@ -11,10 +11,10 @@
       <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session10/">Session 10 - SpringMVC ModelAndView Lab 練習</a><br />
   </li>
     <li>
-      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session11/">Session 11 - SpringMVC 表單資料綁定</a><br />
+      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session11/">Session 11 - SpringMVC 表單資料綁定 ModelAttribute</a><br />
   </li>
   <li>
-      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session12/">Session 12 - SpringMVC 表單資料驗證</a><br />
+      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session12/">Session 12 - SpringMVC 表單資料驗證 JSR-303</a><br />
   </li>
 </ul>
 <hr />
