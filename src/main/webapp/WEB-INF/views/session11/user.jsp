@@ -43,7 +43,35 @@
 	<form class="pure-form">
 		<fieldset>
 			<legend>User List</legend>
-			${ users }
+			<table class="pure-table pure-table-bordered">
+				<thead>
+					<tr>
+						<th>index</th><th>姓名</th><th>年齡</th><th>生日</th>
+						<th>學歷</th><th>性別</th><th>興趣</th><th>履歷</th>
+						<th>編輯</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach varStatus="status" var="user" items="${ users }">
+					<tr>
+						<td>${ status.index }</td><td>${ user.name }</td><td>${ user.age }</td><td>${ user.birth }</td>
+						<td>${ user.education }</td><td>${ user.sex }</td>
+						<td>
+							<c:forEach var="interest" items="${ user.interest }">
+								${ interest }
+							</c:forEach>
+						</td>
+						<td>${ user.resume }</td>
+						<td>
+							<button type="button"
+									onclick="window.location.href='/spring.mvc/mvc/session11/user/${ status.index }';"
+									class="pure-button pure-button-primary">編輯</button>
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>		
+			
 		</fieldset>	
 	</form>
 </body>
