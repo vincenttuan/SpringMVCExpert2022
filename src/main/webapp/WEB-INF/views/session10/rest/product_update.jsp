@@ -48,7 +48,7 @@
 			<p />
 			商品數量：${ product.quantity }
 			<p />
-			商品價格：{ product.price }
+			商品價格：${ product.price }
 			<p />
 			<button type="submit" class="pure-button pure-button-primary">Rest Delete</button>
 		</fieldset>
