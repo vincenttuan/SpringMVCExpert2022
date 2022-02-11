@@ -16,7 +16,7 @@
 	<spform:form class="pure-form" 
 				 method="post" 
 				 modelAttribute="user" 
-				 action="/spring.mvc/mvc/session11/user/">
+				 action="/spring.mvc/mvc/session11/user/${ index }">
 		<fieldset>
 			<legend>User form</legend>
 			姓名：<spform:input path="name" /><p />
