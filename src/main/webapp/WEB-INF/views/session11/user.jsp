@@ -7,10 +7,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
-<meta charset="UTF-8">
-<title>User From</title>
+	<link rel="stylesheet"
+		href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+	<meta charset="UTF-8">
+	<title>User From</title>
+	<script>
+		function deleteUser(index) {
+			// Create an XMLHttpRequest object
+			const xhttp = new XMLHttpRequest();
+
+			// Define a callback function
+			xhttp.onload = function() {
+			  window.location.href = '/spring.mvc/mvc/session11/user/';
+			}
+
+			// Send a request
+			xhttp.open("DELETE", "/spring.mvc/mvc/session11/user/" + index);
+			xhttp.send();
+		}
+	</script>
 </head>
 <body style="padding: 15px;">
 	<spform:form class="pure-form" 
@@ -48,7 +63,7 @@
 					<tr>
 						<th>index</th><th>姓名</th><th>年齡</th><th>生日</th>
 						<th>學歷</th><th>性別</th><th>興趣</th><th>履歷</th>
-						<th>編輯</th>
+						<th>編輯</th><th>刪除</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -66,6 +81,11 @@
 							<button type="button"
 									onclick="window.location.href='/spring.mvc/mvc/session11/user/${ status.index }';"
 									class="pure-button pure-button-primary">編輯</button>
+						</td>
+						<td>
+							<button type="button"
+									onclick="deleteUser(${ status.index });"
+									class="pure-button pure-button-primary">刪除</button>
 						</td>
 					</tr>
 					</c:forEach>
