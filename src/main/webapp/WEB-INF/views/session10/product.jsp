@@ -37,6 +37,8 @@
 						<th>商品名稱<br />productName</th>
 						<th>商品數量<br />quantity</th>
 						<th>商品價格<br />price</th>
+						<th>修改<br />update</th>
+						<th>刪除<br />delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,6 +48,16 @@
 							<td>${ product.productName }</td>
 							<td>${ product.quantity }</td>
 							<td>${ product.price }</td>
+							<td>
+								<button type="button"
+									onclick="window.location.href='/spring.mvc/mvc/product/get/${ status.index }';"
+									class="pure-button pure-button-primary">修改</button>
+							</td>
+							<td>
+								<button type="button"
+									onclick="window.location.href='/spring.mvc/mvc/product/delete/${ status.index }';"
+									class="pure-button pure-button-primary">刪除</button>
+							</td>	
 						</tr>
 					</c:forEach>
 				</tbody>
