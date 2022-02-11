@@ -17,27 +17,34 @@
 				 method="post" 
 				 modelAttribute="user" 
 				 action="/spring.mvc/mvc/session11/user/">
-		
-		姓名：<spform:input path="name" /><p />
-		年齡：<spform:input path="age" /><p />
-		生日：<spform:input type="date" path="birth" /><p />
-		學歷：<spform:select path="education">
-				<spform:option value="">請選擇</spform:option>
-				<spform:option value="國中">國中</spform:option>
-				<spform:option value="高中">高中</spform:option>
-				<spform:option value="大學">大學</spform:option>
-				<spform:option value="研究所">研究所</spform:option>
-			 </spform:select><p />
-		性別：<spform:radiobutton path="sex" value="男" />男
-			 <spform:radiobutton path="sex" value="女" />女<p />
-		興趣：<spform:checkbox path="interest" value="爬山" />爬山
-			 <spform:checkbox path="interest" value="看書" />看書
-			 <spform:checkbox path="interest" value="打球" />打球
-			 <spform:checkbox path="interest" value="飛控" />飛控<p />
-		履歷：<spform:textarea path="resume" /><p />
-		<input type="hidden" name="_method" id="_method" value="${ _method }"/>
-		<button type="submit" class="pure-button pure-button-primary">${ submitButtonName }</button>
-		
+		<fieldset>
+			<legend>User form</legend>
+			姓名：<spform:input path="name" /><p />
+			年齡：<spform:input path="age" /><p />
+			生日：<spform:input type="date" path="birth" /><p />
+			學歷：<spform:select path="education">
+					<spform:option value="">請選擇</spform:option>
+					<spform:option value="國中">國中</spform:option>
+					<spform:option value="高中">高中</spform:option>
+					<spform:option value="大學">大學</spform:option>
+					<spform:option value="研究所">研究所</spform:option>
+				 </spform:select><p />
+			性別：<spform:radiobutton path="sex" value="男" />男
+				 <spform:radiobutton path="sex" value="女" />女<p />
+			興趣：<spform:checkbox path="interest" value="爬山" />爬山
+				 <spform:checkbox path="interest" value="看書" />看書
+				 <spform:checkbox path="interest" value="打球" />打球
+				 <spform:checkbox path="interest" value="飛控" />飛控<p />
+			履歷：<spform:textarea path="resume" /><p />
+			<input type="hidden" name="_method" id="_method" value="${ _method }"/>
+			<button type="submit" class="pure-button pure-button-primary">${ submitButtonName }</button>
+		</fieldset>
 	</spform:form>
+	<form class="pure-form">
+		<fieldset>
+			<legend>User List</legend>
+			${ users }
+		</fieldset>	
+	</form>
 </body>
 </html>

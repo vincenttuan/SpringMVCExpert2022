@@ -1,12 +1,11 @@
 package spring.mvc.session11.entity;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-
 
 public class User {
 	
@@ -19,7 +18,7 @@ public class User {
 	
 	private String education;
 	private String sex;
-	private String interest;
+	private String[] interest;
 	private String resume;
 	
 	public String getName() {
@@ -52,10 +51,10 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String getInterest() {
+	public String[] getInterest() {
 		return interest;
 	}
-	public void setInterest(String interest) {
+	public void setInterest(String[] interest) {
 		this.interest = interest;
 	}
 	public String getResume() {
@@ -67,9 +66,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", age=" + age + ", birth=" + birth + ", education=" + education + ", sex=" + sex
-				+ ", interest=" + interest + ", resume=" + resume + "]";
+				+ ", interest=" + Arrays.toString(interest) + ", resume=" + resume + "]";
 	}
-	
 	
 	
 }
