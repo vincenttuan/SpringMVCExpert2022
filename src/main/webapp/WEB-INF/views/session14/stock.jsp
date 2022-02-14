@@ -10,7 +10,7 @@
 	<link rel="stylesheet"
 		href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 	<meta charset="UTF-8">
-	<title>Person Form</title>
+	<title>Stock Form</title>
 	<style type="text/css">
 		.error {
 			color: #FF0000;
@@ -20,23 +20,20 @@
 <body style="padding: 15px;">
 	<spform:form class="pure-form" 
 				 method="post" 
-				 modelAttribute="person" 
-				 action="${ pageContext.request.contextPath }/mvc/session13/person/">
+				 modelAttribute="stock" 
+				 action="${ pageContext.request.contextPath }/mvc/session14/stock/">
 		<fieldset>
-			<legend>Person form</legend>
-			姓名：<spform:input path="name" />
-				 <spform:errors path="name" cssClass="error" /><p />
-			年齡：<spform:input path="age" />
-				 <spform:errors path="age" cssClass="error" /><p />
-			會員：<spform:radiobutton path="member" value="true" />會員
-				 <spform:radiobutton path="member" value="false" />非會員
-				 <spform:errors path="member" cssClass="error" /><p />
-			生日：<spform:input path="birth" type="date" />
-				 <spform:errors path="birth" cssClass="error" /><p />
+			<legend>Stock form</legend>
+			股號：<spform:input path="symbol" />
+				 <spform:errors path="symbol" cssClass="error" /><p />
+			價格：<spform:input path="price" />
+				 <spform:errors path="price" cssClass="error" /><p />
+			數量：<spform:input path="amount" />
+				 <spform:errors path="amount" cssClass="error" /><p />
 			<button type="submit" class="pure-button pure-button-primary">新增</button><p />
 			<spform:errors path="*" cssClass="error" />
 		</fieldset>
 	</spform:form>
-	${ people }
+	${ stocks }
 </body>
 </html>
