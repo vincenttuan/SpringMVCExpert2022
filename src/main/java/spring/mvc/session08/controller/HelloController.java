@@ -44,7 +44,7 @@ public class HelloController {
 	
 	/*
 	 * 3. ?後帶入參數並計算 (Lab 練習)
-	 * 子路徑：/hello/bmi?h=170.0&w=60.0
+	 * 路徑：/hello/bmi?h=170.0&w=60.0
 	 */
 	// 請設計方法 api, 結果會得到 bmi = 20.76
 	@RequestMapping(value = "/bmi")
@@ -124,6 +124,11 @@ public class HelloController {
 	
 	/* 
 	 * 8. 得到多筆 score 資料 (Lab 練習)
+     * 路徑：/javaexam?score=80&score=100&score=50
+     * 求出最高分、最低分、平均與總分
+	*/
+	/* 
+	 * 8. 得到多筆 score 資料 (Lab 練習)
      * 子路徑：/max?score=80&score=100&score=50
      * 結果得到：max score = 100
 	 * 子路徑：/min?score=80&score=100&score=50
@@ -155,8 +160,8 @@ public class HelloController {
 	/*
 	 * Map 參數
 	 * 子路徑：/person?name=John&score=100&age=18&pass=true
-	 * 子路徑：/person?name=Mary&score=90&age=20&level=2
-	 * 常與於 form 表單傳來的參數
+	 * 子路徑：/person?name=Mary&score=90&level=2
+	 * 常與於各 form 表單傳來的不統一參數
 	 * */
 	@RequestMapping("/person")
 	@ResponseBody

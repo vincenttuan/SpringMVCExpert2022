@@ -10,7 +10,7 @@
 	<link rel="stylesheet"
 		href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 	<meta charset="UTF-8">
-	<title>User From</title>
+	<title>User Form</title>
 	<script>
 		function deleteUser(index) {
 			// Create an XMLHttpRequest object

@@ -35,9 +35,8 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/mvc/*</url-pattern>
 	</servlet-mapping>
-	
 	<!-- 中文支援 -->
-    <filter>
+	<filter>
         <filter-name>springUtf8Encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -63,5 +62,5 @@
         <filter-name>HiddenHttpMethodFilter</filter-name>
         <url-pattern>/mvc/*</url-pattern>
     </filter-mapping>
-    
+   
 </web-app>
