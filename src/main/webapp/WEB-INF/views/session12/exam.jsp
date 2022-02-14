@@ -10,6 +10,11 @@
 	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 	<meta charset="UTF-8">
 	<title>Exam 考試註冊系統</title>
+	<script type="text/javascript">
+		function edit(id) {
+			window.location.href = '${ pageContext.request.contextPath }/mvc/exam/' + id;
+		}
+	</script>
 </head>
 <body style="padding: 15px;">
 	<table>
@@ -65,19 +70,23 @@
 								<tr>
 									<td>${ exam.id }</td>
 									<td>${ exam.exam }</td>
-									<td>${ exam.slot }</td>
-									<td>${ exam.pay }</td>
+									<td>
+										<c:forEach var="slot" items="${ exam.slot }">
+											${ slot }
+										</c:forEach>
+									</td>
+									<td>${ exam.pay?'已繳':'未繳' }</td>
 									<td>${ exam.note }</td>
 									<td>
 										<button type="button"
-												onclick="edit(${ exam.id });"
+												onclick="edit('${ exam.id }');"
 												class="pure-button pure-button-primary">
 											編輯
 										</button>
 									</td>
 									<td>
 										<button type="button"
-												onclick="remove(${ exam.id });"
+												onclick="remove('${ exam.id }');"
 												class="pure-button pure-button-primary">
 											刪除
 										</button>

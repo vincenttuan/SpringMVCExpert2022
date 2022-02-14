@@ -1,12 +1,14 @@
 package spring.mvc.session12.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,6 +29,24 @@ public class ExamController {
 		model.addAttribute("exams", exams); // 目前所有註冊考試的紀錄
 		model.addAttribute("action", "新增"); // 設定 form submit button 上的文字
 		return "session12/exam";
+	}
+	
+	@GetMapping("/{id}")
+	public String get(Model model, @PathVariable("id") String id) {
+		Optional<Exam> optExam = exams.stream()
+							.parallel()
+							.filter(e -> e.getId().equals(id)).findFirst();
+		if(optExam.isPresent()) {
+			Exam exam = optExam.get();
+			model.addAttribute("_method", "PUT");
+			model.addAttribute("exam", exam); // 手動設定將指定的 exam 傳給 view
+			model.addAttribute("exams", exams); // 目前所有註冊考試的紀錄
+			model.addAttribute("action", "修改"); // 設定 form submit button 上的文字
+			return "session12/exam";
+		}
+		// 若上述 if 不成立，則重導到首頁
+		return "redirect:./";
+		
 	}
 	
 	@PostMapping("/")
