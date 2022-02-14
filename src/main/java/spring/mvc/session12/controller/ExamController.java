@@ -5,7 +5,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.mvc.session12.entity.Exam;
@@ -19,11 +21,20 @@ public class ExamController {
 	// 所以可以使用 CopyOnWriteArrayList 來作為多執行緒資料操作的集合類
 	private List<Exam> exams = new CopyOnWriteArrayList<>(); // 註冊考試的紀錄集合
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String index(Model model, @ModelAttribute Exam exam) {
+		model.addAttribute("_method", "POST");
 		model.addAttribute("exams", exams); // 目前所有註冊考試的紀錄
-		model.addAttribute("action", "add"); // 設定 form action 與 submit button 上的文字
+		model.addAttribute("action", "新增"); // 設定 form submit button 上的文字
 		return "session12/exam";
 	}
+	
+	@PostMapping("/")
+	public String add(Exam exam) {
+		exams.add(exam);
+		return "redirect:./";
+	}
+	
+	
 	
 }

@@ -19,9 +19,10 @@
 				<spform:form class="pure-form" 
 							 modelAttribute="exam"
 							 method="post"
-							 action="${ pageContext.request.contextPath }/mvc/exam/${ action }">
+							 action="${ pageContext.request.contextPath }/mvc/exam/">
 					<fieldset>
 						<legend>Exam 考試註冊-表單</legend>
+						<input type="hidden" name="_method" id="_method" value="${ _method }"/>
 						學號：<spform:input path="id" /><p />
 						科目：<spform:select path="exam">
 							 	<spform:option value="">請選擇</spform:option>
