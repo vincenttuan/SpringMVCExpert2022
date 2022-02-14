@@ -21,19 +21,19 @@
 	
 	<!-- 錯誤訊息設定 properites -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        	<property name="basename" value="/WEB-INF/resource/errorMessage" />
-        	<property name="useCodeAsDefaultMessage" value="false"/>  
-        	<property name="defaultEncoding" value="UTF-8"/>
-    	</bean>
+        <property name="basename" value="/WEB-INF/resource/errorMessage" />
+        <property name="useCodeAsDefaultMessage" value="false"/>  
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
     
-    	<!-- JSR 303 Validator 驗證: Hibernate Validator 實作驗證配置-->
-    	<bean id="validator"
+    <!-- JSR 303 Validator 驗證: Hibernate Validator 實作驗證配置-->
+    <bean id="validator"
     		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-    		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
-    		<property name="validationMessageSource" ref="messageSource" />
-    	</bean>
+    	<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+    	<property name="validationMessageSource" ref="messageSource" />
+    </bean>
     
-    	<!--  解決中文 與 JSR 303 Validator 設定 -->
+    <!--  解決中文 與 JSR 303 Validator 設定 -->
 	<mvc:annotation-driven validator="validator">
 		<mvc:message-converters
 			register-defaults="true">

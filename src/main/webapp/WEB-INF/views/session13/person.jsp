@@ -24,13 +24,17 @@
 				 action="${ pageContext.request.contextPath }/mvc/session13/person/">
 		<fieldset>
 			<legend>Person form</legend>
-			姓名：<spform:input path="name" /><p />
-			年齡：<spform:input path="age" /><p />
+			姓名：<spform:input path="name" />
+				 <spform:errors path="name" cssClass="error" /><p />
+			年齡：<spform:input path="age" />
+				 <spform:errors path="age" cssClass="error" /><p />
 			會員：<spform:radiobutton path="member" value="true" />會員
-				 <spform:radiobutton path="member" value="false" />非會員<p />
-			生日：<spform:input type="date" path="birth" /><p />
+				 <spform:radiobutton path="member" value="false" />非會員
+				 <spform:errors path="member" cssClass="error" /><p />
+			生日：<spform:input path="birth" type="date" />
+				 <spform:errors path="birth" cssClass="error" /><p />
 			<button type="submit" class="pure-button pure-button-primary">新增</button><p />
-			<spform:errors path="*" cssClass="error" />
+			
 		</fieldset>
 	</spform:form>
 	${ people }
