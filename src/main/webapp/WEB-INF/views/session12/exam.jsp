@@ -18,17 +18,17 @@
 			// Define a callback function
 			xhttp.onload = function(msg) {
 				// 重導到首頁
-				window.location.href = '${ pageContext.request.contextPath }/mvc/exam/';
+				window.location.href = '${ pageContext.request.contextPath }/mvc/session12/exam/';
 			}
 
 			// Send a request
-			xhttp.open("POST", "${ pageContext.request.contextPath }/mvc/exam/" + id + "/note");
+			xhttp.open("POST", "${ pageContext.request.contextPath }/mvc/exam/session12/" + id + "/note");
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send("note=" + newNote);
 		}
 		
 		function edit(id) {
-			window.location.href = '${ pageContext.request.contextPath }/mvc/exam/' + id;
+			window.location.href = '${ pageContext.request.contextPath }/mvc/session12/exam/' + id;
 		}
 		
 		function remove(id) {
@@ -39,11 +39,11 @@
 				// Define a callback function
 				xhttp.onload = function() {
 					// 重導到首頁
-					window.location.href = '${ pageContext.request.contextPath }/mvc/exam/';
+					window.location.href = '${ pageContext.request.contextPath }/mvc/session12/exam/';
 				}
 
 				// Send a request
-				xhttp.open("DELETE", "${ pageContext.request.contextPath }/mvc/exam/" + id);
+				xhttp.open("DELETE", "${ pageContext.request.contextPath }/mvc/session12/exam/" + id);
 				xhttp.send();
 			}
 		}
@@ -57,7 +57,7 @@
 				<spform:form class="pure-form" 
 							 modelAttribute="exam"
 							 method="post"
-							 action="${ pageContext.request.contextPath }/mvc/exam/">
+							 action="${ pageContext.request.contextPath }/mvc/session12/exam/">
 					<fieldset>
 						<legend>Exam 考試註冊-表單</legend>
 						<input type="hidden" name="_method" id="_method" value="${ _method }"/>

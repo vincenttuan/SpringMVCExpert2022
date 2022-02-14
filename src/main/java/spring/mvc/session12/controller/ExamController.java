@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import spring.mvc.session12.entity.Exam;
 
 @Controller
-@RequestMapping("/exam")
+@RequestMapping("/session12/exam")
 public class ExamController {
 	// CopyOnWriteArrayList 是執行緒安全的集合-適合多執行緒操作
 	// ArrayList 是非執行緒安全的集合-適合單緒操作
