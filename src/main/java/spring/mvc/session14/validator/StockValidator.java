@@ -6,6 +6,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import spring.mvc.session14.entity.Stock;
+import yahoofinance.YahooFinance;
 
 @Component
 public class StockValidator implements Validator {
@@ -21,9 +22,34 @@ public class StockValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Stock stock = (Stock)target;
+		// 基礎驗證
 		ValidationUtils.rejectIfEmpty(errors, "symbol", "stock.symbol.empty");
 		ValidationUtils.rejectIfEmpty(errors, "price", "stock.price.empty");
 		ValidationUtils.rejectIfEmpty(errors, "amount", "stock.amount.empty");
+		// 進階驗證
+		yahoofinance.Stock yStock = null;
+		try {
+			yStock = YahooFinance.get(stock.getSymbol());
+			double previousCose = yStock.getQuote().getPreviousClose().doubleValue(); // 昨日收盤價
+			// 買進價格必須是昨日收盤價的±10%之間
+			if(stock.getPrice() < previousCose * 0.9 || stock.getPrice() > previousCose * 1.1) {
+				errors.rejectValue("price", "stock.price.range");
+			}
+			// 買進股數必須大於或等於1000
+			if(stock.getAmount() < 1000) {
+				errors.rejectValue("amount", "stock.amount.notenough");
+			}
+			// 買進股數必須是1000的倍數(1000股 = 1張)
+			if(stock.getAmount() % 1000 != 0) {
+				errors.rejectValue("amount", "stock.amount.range");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if(yStock == null) {
+				errors.rejectValue("symbol", "stock.symbol.notfound");
+			}
+		}
 	}
 	
 }
