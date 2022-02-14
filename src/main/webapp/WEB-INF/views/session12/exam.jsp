@@ -11,8 +11,41 @@
 	<meta charset="UTF-8">
 	<title>Exam 考試註冊系統</title>
 	<script type="text/javascript">
+		// 編輯單欄資料
+		function editNote(id, note) {
+			var newNote = prompt('備註(note)欄位修改', note);
+			const xhttp = new XMLHttpRequest();
+			// Define a callback function
+			xhttp.onload = function(msg) {
+				// 重導到首頁
+				window.location.href = '${ pageContext.request.contextPath }/mvc/exam/';
+			}
+
+			// Send a request
+			xhttp.open("POST", "${ pageContext.request.contextPath }/mvc/exam/" + id + "/note");
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("note=" + newNote);
+		}
+		
 		function edit(id) {
 			window.location.href = '${ pageContext.request.contextPath }/mvc/exam/' + id;
+		}
+		
+		function remove(id) {
+			if(confirm('是否要刪除學號: ' + id + ' 這筆資料 ?')) {
+				// Create an XMLHttpRequest object
+				const xhttp = new XMLHttpRequest();
+				
+				// Define a callback function
+				xhttp.onload = function() {
+					// 重導到首頁
+					window.location.href = '${ pageContext.request.contextPath }/mvc/exam/';
+				}
+
+				// Send a request
+				xhttp.open("DELETE", "${ pageContext.request.contextPath }/mvc/exam/" + id);
+				xhttp.send();
+			}
 		}
 	</script>
 </head>
@@ -76,7 +109,11 @@
 										</c:forEach>
 									</td>
 									<td>${ exam.pay?'已繳':'未繳' }</td>
-									<td>${ exam.note }</td>
+									<td onclick="editNote('${ exam.id }', this.innerText)" 
+										title="按我一下可以修改"
+										style="cursor: pointer">
+										${ exam.note }
+									</td>
 									<td>
 										<button type="button"
 												onclick="edit('${ exam.id }');"

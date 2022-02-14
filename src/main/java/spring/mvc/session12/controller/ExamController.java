@@ -1,16 +1,22 @@
 package spring.mvc.session12.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.mvc.session12.entity.Exam;
 
@@ -55,6 +61,41 @@ public class ExamController {
 		return "redirect:./";
 	}
 	
+	@PostMapping("/{id}/note")
+	public String updateNote(@PathVariable("id") String id, @RequestParam("note") String note) {
+		
+		for(int i=0;i<exams.size();i++) {
+			if(exams.get(i).getId().equals(id)) {
+				exams.get(i).setNote(note);
+				return "redirect:./";
+			}
+		}
+		return "redirect:./";
+	}
+	
+	@PutMapping("/")
+	public String update(Exam exam) {
+		for(int i=0;i<exams.size();i++) {
+			if(exams.get(i).getId().equals(exam.getId())) {
+				exams.set(i, exam);
+				return "redirect:./";
+			}
+		}
+		return "redirect:./";
+	}
+	
+	
+	
+	@DeleteMapping("/{id}")
+	public String delete(@PathVariable("id") String id) {
+		for(int i=0;i<exams.size();i++) {
+			if(exams.get(i).getId().equals(id)) {
+				exams.remove(i);
+				return "redirect:./";
+			}
+		}
+		return "redirect:./";
+	}
 	
 	
 }
