@@ -10,7 +10,7 @@
 	<link rel="stylesheet"
 		href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 	<meta charset="UTF-8">
-	<title>Job Form</title>
+	<title>Employee Form</title>
 	<style type="text/css">
 		.error {
 			color: #FF0000;
@@ -20,20 +20,20 @@
 <body style="padding: 15px;">
 	<spform:form class="pure-form" 
 				 method="post" 
-				 modelAttribute="job" 
-				 action="${ pageContext.request.contextPath }/mvc/session15/job/">
+				 modelAttribute="employee" 
+				 action="${ pageContext.request.contextPath }/mvc/session15/employee/">
 		<fieldset>
-			<legend>Job form</legend>
+			<legend>Employee form</legend>
 			<input type="hidden" name="_method" id="_method" value="${ _method }"/>
-			編號：<spform:input path="jid" readonly="true" /><p />
-			名稱：<spform:input path="jname" />
-				 <spform:errors path="jname" cssClass="error" /><p />
-			員工：<spform:input path="eid" />
-				 <spform:errors path="eid" cssClass="error" /><p />
+			編號：<spform:input path="eid" readonly="true" /><p />
+			姓名：<spform:input path="ename" />
+				 <spform:errors path="ename" cssClass="error" /><p />
+			薪資：<spform:input path="salary" />
+				 <spform:errors path="salary" cssClass="error" /><p />
 			<button type="submit" class="pure-button pure-button-primary">${ action }</button><p />
 			<spform:errors path="*" cssClass="error" />
 		</fieldset>
 	</spform:form>
-	${ jobs }
+	${ employees }
 </body>
 </html>

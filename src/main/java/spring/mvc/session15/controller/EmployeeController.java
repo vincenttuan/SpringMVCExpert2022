@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,6 +19,17 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeDao employeeDao;
+	
+	@GetMapping("/")
+	public String index(@ModelAttribute Employee employee, Model model) {
+		model.addAttribute("_method", "POST");
+		model.addAttribute("action", "新增");
+		model.addAttribute("employees", employeeDao.queryAll3());
+		return "session15/employee";
+	}
+	
+	
+	//-------------------------------------------------------------------------------
 	
 	@GetMapping("/create_table")
 	@ResponseBody
