@@ -25,6 +25,9 @@
     <li>
       <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session14/">Session 14 - SpringMVC 表單資料客製化驗證</a><br />
   </li>
+  <li>
+      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session15/">Session 15、16 - SpringMVC 與 JdbcTemplate</a><br />
+  </li>
 </ul>
 <hr />
 問題探討：<br />
