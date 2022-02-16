@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import spring.mvc.session15.repository.EmployeeDao;
+import spring.mvc.session15.repository.JobDao;
 
 @Controller
-@RequestMapping("/jdbc/employee")
-public class EmployeeController {
+@RequestMapping("/jdbc/job")
+public class JobController {
 	
 	@Autowired
-	private EmployeeDao employeeDao;
+	private JobDao jobDao;
 	
 	@GetMapping("/create_table")
 	@ResponseBody
 	public String createTable() {
-		return "create employee table：" + employeeDao.createTable();
+		return "create job table：" + jobDao.createTable();
 	}
 }
 
