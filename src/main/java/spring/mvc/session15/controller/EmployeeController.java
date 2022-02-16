@@ -12,7 +12,7 @@ import spring.mvc.session15.entity.Employee;
 import spring.mvc.session15.repository.EmployeeDao;
 
 @Controller
-@RequestMapping("/jdbc/employee")
+@RequestMapping("/session15/employee")
 public class EmployeeController {
 	
 	@Autowired

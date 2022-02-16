@@ -12,7 +12,7 @@ import spring.mvc.session15.entity.Job;
 import spring.mvc.session15.repository.JobDao;
 
 @Controller
-@RequestMapping("/jdbc/job")
+@RequestMapping("/session15/job")
 public class JobController {
 	
 	@Autowired
