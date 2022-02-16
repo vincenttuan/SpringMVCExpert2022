@@ -25,7 +25,7 @@
 		<fieldset>
 			<legend>Job form</legend>
 			<input type="hidden" name="_method" id="_method" value="${ _method }"/>
-			ID：<spform:input path="jid" readonly="" /><p />
+			編號：<spform:input path="jid" readonly="" /><p />
 			名稱：<spform:input path="jname" />
 				 <spform:errors path="jname" cssClass="error" /><p />
 			員工：<spform:input path="eid" />
