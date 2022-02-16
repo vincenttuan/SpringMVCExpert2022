@@ -1,12 +1,13 @@
 package spring.mvc.session15.repository;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
+import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +33,7 @@ public class JobDao {
 	// 使用 BeanPropertyRowMapper
 	public List<Job> queryAll() {
 		String sql = "select j.jid, j.jname, j.eid from job j";
-		List<Job> jobs = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Job.class));
+		List<Job> jobs = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Job.class));
 		return jobs;
 	}
 	
@@ -60,4 +61,33 @@ public class JobDao {
 		List<Job> jobs = jdbcTemplate.query(sql, rm);
 		return jobs;
 	}
+	
+	// 使用 SimpleFlatMapper 
+	// 調用：org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory
+	public List<Job> queryAll3() {
+		
+		ResultSetExtractor<List<Job>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
+				.addKeys("jid")  // job 表的主鍵
+				.newResultSetExtractor(Job.class);
+		
+		String sql = "select "
+					+ "	j.jid, j.jname, j.eid, "
+					+ "	e.eid as employee_eid, e.ename as employee_ename, e.salary as employee_salary, "
+					+ "	e.createtime as employee_createtime "
+					+ "from "
+					+ "	job j, employee e "
+					+ "where j.eid = e.eid";
+		
+		List<Job> jobs = jdbcTemplate.query(sql, resultSetExtractor);
+		return jobs;
+	}
+	
 }
+
+
+
+
+
+
+
+

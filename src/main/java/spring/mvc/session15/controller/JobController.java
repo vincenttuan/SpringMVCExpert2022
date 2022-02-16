@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.mvc.session15.entity.Job;
@@ -29,6 +28,18 @@ public class JobController {
 	@ResponseBody
 	public List<Job> queryJson() {
 		return jobDao.queryAll();
+	}
+	
+	@GetMapping(value = "/query_json2", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Job> queryJson2() {
+		return jobDao.queryAll2();
+	}
+	
+	@GetMapping(value = "/query_json3", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Job> queryJson3() {
+		return jobDao.queryAll3();
 	}
 }
 
