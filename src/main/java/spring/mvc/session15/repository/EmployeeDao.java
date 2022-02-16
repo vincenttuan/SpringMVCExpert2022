@@ -1,13 +1,18 @@
 package spring.mvc.session15.repository;
 
+import java.sql.ResultSet;
 import java.util.List;
 
+import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import spring.mvc.session15.entity.Employee;
+import spring.mvc.session15.entity.Job;
 
 @Repository
 public class EmployeeDao {
@@ -27,5 +32,50 @@ public class EmployeeDao {
 		List<Employee> employees = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Employee.class));
 		return employees;
 	}
-	
+
+	// 實作 RowMapper
+	/*
+	 * public interface RowMapper<T> { T mapRow(ResultSet rs, int rowNum) throws
+	 * SQLException; }
+	 */
+	public List<Employee> queryAll2() {
+		String sql = "select e.eid, e.ename, e.salary, e.createtime from employee e";
+
+		RowMapper<Employee> rm = (ResultSet rs, int rowNum) -> {
+			Employee employee = new Employee();
+			employee.setEid(rs.getInt("eid"));
+			employee.setEname(rs.getString("ename"));
+			employee.setSalary(rs.getInt("salary"));
+			employee.setCreatetime(rs.getDate("createtime"));
+			String sql2 = "select j.jid, j.jname, j.eid from job j where j.eid=?";
+			List<Job> jobs = jdbcTemplate.query(sql2, new Object[] { employee.getEid() },
+					new BeanPropertyRowMapper<Job>(Job.class));
+
+			employee.setJobs(jobs);
+			return employee;
+		};
+
+		List<Employee> employees = jdbcTemplate.query(sql, rm);
+		return employees;
+	}
+
+	// 使用 SimpleFlatMapper
+	// 調用：org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory
+	public List<Employee> queryAll3() {
+
+		ResultSetExtractor<List<Employee>> resultSetExtractor = 
+				JdbcTemplateMapperFactory.newInstance()
+				.addKeys("eid") // employee 表的主鍵
+				.newResultSetExtractor(Employee.class);
+
+		String sql = "select "
+					+ "	e.eid, e.ename, e.salary, e.createtime, "
+					+ "	j.jid as job_jid, j.jname as job_jname, j.eid as job_eid "
+					+ "from "
+					+ "	employee e left join job j on j.eid = e.eid";
+
+		List<Employee> employees = jdbcTemplate.query(sql, resultSetExtractor);
+		return employees;
+	}
+
 }

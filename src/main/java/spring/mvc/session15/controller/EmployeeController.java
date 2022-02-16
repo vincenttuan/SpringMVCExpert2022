@@ -29,6 +29,18 @@ public class EmployeeController {
 	public List<Employee> queryJson() {
 		return employeeDao.queryAll();
 	}
+	
+	@GetMapping(value = "/query_json2", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Employee> queryJson2() {
+		return employeeDao.queryAll2();
+	}
+	
+	@GetMapping(value = "/query_json3", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Employee> queryJson3() {
+		return employeeDao.queryAll3();
+	}
 }
 
 
