@@ -10,7 +10,6 @@ import yahoofinance.YahooFinance;
 
 @Component
 public class StockValidator implements Validator {
-	
 	// 判斷當前的類是否是要驗證的類別
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -51,5 +50,4 @@ public class StockValidator implements Validator {
 			}
 		}
 	}
-	
 }

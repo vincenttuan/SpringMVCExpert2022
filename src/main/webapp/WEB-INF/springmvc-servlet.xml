@@ -23,19 +23,19 @@
 	
 	<!-- 錯誤訊息設定 properites -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        	<property name="basename" value="/WEB-INF/resource/errorMessage" />
-        	<property name="useCodeAsDefaultMessage" value="false"/>  
-        	<property name="defaultEncoding" value="UTF-8"/>
-    	</bean>
+        <property name="basename" value="/WEB-INF/resource/errorMessage" />
+        <property name="useCodeAsDefaultMessage" value="false"/>  
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
     
-    	<!-- JSR 303 Validator 驗證: Hibernate Validator 實作驗證配置-->
-    	<bean id="validator"
+    <!-- JSR 303 Validator 驗證: Hibernate Validator 實作驗證配置-->
+    <bean id="validator"
     		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-    		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
-    		<property name="validationMessageSource" ref="messageSource" />
-    	</bean>
+    	<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+    	<property name="validationMessageSource" ref="messageSource" />
+    </bean>
     
-    	<!--  解決中文 與 JSR 303 Validator 設定 -->
+    <!--  解決中文 與 JSR 303 Validator 設定 -->
 	<mvc:annotation-driven validator="validator">
 		<mvc:message-converters
 			register-defaults="true">
@@ -53,7 +53,7 @@
 	<!-- c3p0 pool -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="org.sqlite.JDBC" />
-		<property name="jdbcUrl" value="jdbc:sqlite:資料庫資源路徑" />
+		<property name="jdbcUrl" value="jdbc:sqlite:/Users/vincenttuan/eclipse-workspace-javaexpert/spring.mvc/db/mydb.db" />
 		<property name="user" value="" />
 		<property name="password" value="" />
 		<property name="maxConnectionAge" value="300" /> <!-- -1 表示沒有限制 -->
@@ -76,6 +76,7 @@
 		<property name="dataSource" ref="dataSource" ></property>
     	</bean>
     
-    	<!-- 開啟註解驅動，對事務相關的註解進行掃描與解析 -->
-    	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>	
+	<!-- 開啟註解驅動，對事務相關的註解進行掃描與解析 -->
+	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>	
+
 </beans>
