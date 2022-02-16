@@ -1,5 +1,5 @@
-# Java 企業產訓 SpringMVC 篇
-<b><a href="https://github.com/vincenttuan/SpringCoreExpert2022">Java 企業產訓 SpringCore 篇：Session 01 ~ Session 07</a></b><p />
+# 第二階段：Java 企業產訓 SpringMVC 篇
+<b><a href="https://github.com/vincenttuan/SpringCoreExpert2022">第一階段：Java 企業產訓 SpringCore 篇：Session 01 ~ Session 07</a></b><p />
 <a href="./pom.xml">Maven 配置檔：pom.xml</a><br />
 <a href="https://github.com/vincenttuan/SpringMVCExpert2022/blob/main/src/main/webapp/WEB-INF/springmvc-servlet.xml">SpringMVC 配置檔：springmvc-servlet.xml</a><p />
 <ul>
