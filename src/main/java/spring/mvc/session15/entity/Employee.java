@@ -3,13 +3,20 @@ package spring.mvc.session15.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Employee {
 	private Integer eid;
+	@Size(min = 2, max = 50, message = "{employee.ename.size}")
 	private String ename;
+	@NotNull(message = "{employee.salary.empty}")
+	@Range(min = 30000, max = 300000, message = "{employee.salary.range}")
 	private Integer salary;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8") // 返回時間類型
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") //接收時間類型

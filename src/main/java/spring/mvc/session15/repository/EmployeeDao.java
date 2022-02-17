@@ -26,6 +26,23 @@ public class EmployeeDao {
 		return true;
 	}
 
+	public Employee get(Integer eid) {
+		String sql = "select eid, ename, salary, createtime from employee where eid=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {eid}, new BeanPropertyRowMapper<Employee>(Employee.class));
+	}
+	
+	public int add(Employee emp) {
+		String sql = "insert into employee (ename, salary) values(?, ?)";
+		return jdbcTemplate.update(sql, emp.getEname(), emp.getSalary());
+	}
+	
+	public int update(Employee emp) {
+		String sql = "update employee set ename=?, salary=? where eid=?";
+		return jdbcTemplate.update(sql, emp.getEname(), emp.getSalary(), emp.getEid());
+	}
+	
+	//-------------------------------------------------------------------------------
+	
 	// 使用 BeanPropertyRowMapper
 	public List<Employee> queryAll() {
 		String sql = "select e.eid, e.ename, e.salary, e.createtime from employee e";

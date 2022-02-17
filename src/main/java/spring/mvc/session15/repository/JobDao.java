@@ -30,10 +30,22 @@ public class JobDao {
 		return true;
 	}
 	
+	public Job get(Integer jid) {
+		String sql = "select jid, jname, eid from job where jid=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {jid}, new BeanPropertyRowMapper<Job>(Job.class));
+	}
+	
 	public int add(Job job) {
 		String sql = "insert into job (jname, eid) values(?, ?)";
 		return jdbcTemplate.update(sql, job.getJname(), job.getEid());
 	}
+	
+	public int update(Job job) {
+		String sql = "update job set jname=?, eid=? where jid=?";
+		return jdbcTemplate.update(sql, job.getJname(), job.getEid(), job.getJid());
+	}
+	
+	//-------------------------------------------------------------------------------
 	
 	// 使用 BeanPropertyRowMapper
 	public List<Job> queryAll() {

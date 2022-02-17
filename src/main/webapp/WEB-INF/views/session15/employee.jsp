@@ -1,3 +1,5 @@
+<!-- 小技巧：讓 jsp 可以支援所有 HTTP 方法 -->
+<%@ page isErrorPage="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -81,12 +83,14 @@
 				 modelAttribute="employee" 
 				 action="${ pageContext.request.contextPath }/mvc/session15/employee/">
 					<fieldset>
-						<legend>Employee form</legend>
+						<legend>
+							<b>Employee form</b> | <a href="${ pageContext.request.contextPath }/mvc/session15/job/">Job form</a>
+						</legend>
 						<input type="hidden" name="_method" id="_method" value="${ _method }"/>
 						編號：<spform:input path="eid" readonly="true" /><p />
-						姓名：<spform:input path="ename" />
+						姓名：<spform:input path="ename" /><br />
 							 <spform:errors path="ename" cssClass="error" /><p />
-						薪資：<spform:input path="salary" />
+						薪資：<spform:input path="salary" /><br />
 							 <spform:errors path="salary" cssClass="error" /><p />
 						<button type="submit" class="pure-button pure-button-primary">${ action }</button><p />
 						<spform:errors path="*" cssClass="error" />
@@ -136,7 +140,11 @@
 							<tbody>
 								<c:forEach var="emp" items="${ employees }">
 									<tr>
-										<td>${ emp.eid }</td>
+										<td>
+											<a href="./${ emp.eid }" title="按我一下可以修改">
+												${ emp.eid }
+											</a>
+										</td>
 										<td>${ emp.ename }</td>
 										<td>${ emp.salary }</td>
 										<td>
