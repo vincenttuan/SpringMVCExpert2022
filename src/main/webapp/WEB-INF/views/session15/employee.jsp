@@ -148,7 +148,6 @@
 										<td>${ emp.ename }</td>
 										<td>${ emp.salary }</td>
 										<td>
-											${ emp.jobs[0].jid != null }
 											<c:forEach var="job" items="${ emp.jobs }">
 												${ job.jname }
 											</c:forEach>

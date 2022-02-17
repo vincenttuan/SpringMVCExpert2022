@@ -80,7 +80,14 @@
 			<td valign="top" colspan="2">
 				<form class="pure-form">
 					<fieldset>
-						<legend>Job List</legend>
+						<legend>
+							Job List | 
+							<a href="${ pageContext.request.contextPath }/mvc/session15/job/page/-1">全部查詢</a> | 
+							分頁查詢：
+							<c:forEach var="num" begin="1" end="${ count/5 + 1 }">
+								<a href="${ pageContext.request.contextPath }/mvc/session15/job/page/${ num }">${ num }</a>&nbsp;
+							</c:forEach>
+						</legend>
 						<table class="pure-table pure-table-bordered" width="700px">
 							<thead>
 								<tr>
@@ -101,7 +108,11 @@
 										<td>${ job.jname }
 										</td>
 										<td>${ job.employee.eid }</td>
-										<td>${ job.employee.ename }</td>
+										<td>
+											<a href="${ pageContext.request.contextPath }/mvc/session15/employee/${ job.employee.eid }" title="按我一下可以修改員工資料">
+												${ job.employee.ename }
+											</a>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
