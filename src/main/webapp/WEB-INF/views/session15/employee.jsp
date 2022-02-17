@@ -92,7 +92,15 @@
 							 <spform:errors path="ename" cssClass="error" /><p />
 						薪資：<spform:input path="salary" /><br />
 							 <spform:errors path="salary" cssClass="error" /><p />
-						<button type="submit" class="pure-button pure-button-primary">${ action }</button><p />
+						<c:if test="${ _method eq 'POST' }">
+							<button type="submit" class="pure-button pure-button-primary">${ action }</button>
+							<button type="submit" class="pure-button pure-button-primary" disabled="disabled">修改</button>
+						</c:if>
+						<c:if test="${ _method eq 'PUT' }">
+							<button type="submit" class="pure-button pure-button-primary" disabled="disabled">新增</button>
+							<button type="submit" class="pure-button pure-button-primary">${ action }</button><p />
+						</c:if>	
+						<p />
 						<spform:errors path="*" cssClass="error" />
 					</fieldset>
 				</spform:form>
