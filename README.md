@@ -45,4 +45,7 @@
 1. springmvc在接收時間類型的時候，報 Failed to convert value of type 'java.lang.String' to required type 'java.util.Date'的錯誤，應該怎麼解決呢?<br />
 @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")  // 返回時間類型<br />
 @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") //接收時間類型<br />
-private Date createTime; // 建檔日期<br />
+private Date createTime; // 建檔日期<p />
+
+小技巧：讓 jsp 可以支援所有 HTTP 方法
+<%@ page isErrorPage="true" %>
