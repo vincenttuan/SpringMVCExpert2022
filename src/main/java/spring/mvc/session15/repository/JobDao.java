@@ -30,6 +30,11 @@ public class JobDao {
 		return true;
 	}
 	
+	public int add(Job job) {
+		String sql = "insert into job (jname, eid) values(?, ?)";
+		return jdbcTemplate.update(sql, job.getJname(), job.getEid());
+	}
+	
 	// 使用 BeanPropertyRowMapper
 	public List<Job> queryAll() {
 		String sql = "select j.jid, j.jname, j.eid from job j";

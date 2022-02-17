@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.mvc.session15.entity.Job;
+import spring.mvc.session15.repository.EmployeeDao;
 import spring.mvc.session15.repository.JobDao;
 
 @Controller
@@ -20,14 +22,23 @@ public class JobController {
 	@Autowired
 	private JobDao jobDao;
 	
+	@Autowired
+	private EmployeeDao employeeDao;
+	
 	@GetMapping("/")
 	public String index(@ModelAttribute Job job, Model model) {
 		model.addAttribute("_method", "POST");
 		model.addAttribute("action", "新增");
 		model.addAttribute("jobs", jobDao.queryAll3());
+		model.addAttribute("employees", employeeDao.queryAll3());
 		return "session15/job";
 	}
 	
+	@PostMapping("/")
+	public String add(Job job) {
+		jobDao.add(job);
+		return "redirect:./";
+	}
 	
 	//-------------------------------------------------------------------------------
 	

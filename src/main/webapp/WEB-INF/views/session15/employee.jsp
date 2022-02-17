@@ -24,7 +24,6 @@
 	    	salary();
 	    	jobs();
 	    }
-	    
 	    function salary() {
 	    	var data = google.visualization.arrayToDataTable([
 		        ['ename', 'salary'],
@@ -46,9 +45,8 @@
 	    }
 	    
 	    function jobs() {
-	    	
 	    	var data = google.visualization.arrayToDataTable([
-		        ['ename', 'salary'],
+		        ['ename', 'job_count'],
 		        <c:forEach var="emp" items="${ employees }">
 		        	// 判斷工作數量是否  > 0
 		        	<c:if test="${ fn:length(emp.jobs) > 0 }">
