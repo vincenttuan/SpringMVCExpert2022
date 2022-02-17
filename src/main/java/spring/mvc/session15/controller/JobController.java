@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.mvc.session15.entity.Job;
-import spring.mvc.session15.repository.EmployeeDao;
-import spring.mvc.session15.repository.JobDao;
+import spring.mvc.session15.repository.IEmployeeDao;
+import spring.mvc.session15.repository.IJobDao;
 
 @Controller
 @RequestMapping("/session15/job")
 public class JobController {
 	
 	@Autowired
-	private JobDao jobDao;
+	private IJobDao jobDao;
 	
 	@Autowired
-	private EmployeeDao employeeDao;
+	private IEmployeeDao employeeDao;
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute Job job, Model model, HttpSession httpSession) {
@@ -46,7 +46,7 @@ public class JobController {
 	@GetMapping("/page/{num}")
 	public String page(@PathVariable("num") int num, HttpSession httpSession) {
 		if(num >= 0) {
-			httpSession.setAttribute("offset", (num-1) * JobDao.LIMIT); // offset 要 -1, 因為 offset 是從 0 開始
+			httpSession.setAttribute("offset", (num-1) * IJobDao.LIMIT); // offset 要 -1, 因為 offset 是從 0 開始
 		} else {
 			httpSession.removeAttribute("offset");
 		}

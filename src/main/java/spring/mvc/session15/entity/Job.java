@@ -9,6 +9,8 @@ public class Job {
 	private String jname;
 	
 	private Integer eid;
+	
+	// 加入 Employee：一位工作可以對應一個員工
 	private Employee employee;
 	
 	public Integer getJid() {

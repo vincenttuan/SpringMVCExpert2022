@@ -15,27 +15,35 @@ import spring.mvc.session15.entity.Employee;
 import spring.mvc.session15.entity.Job;
 
 @Repository
-public class EmployeeDao {
+public class EmployeeDao implements IEmployeeDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
+	
+	// 建立 employee 資料表
+	@Override
 	public boolean createTable() {
 		String sql = "create table if not exists employee ( " + "	eid integer primary key, " + "	ename text, "
 				+ "	salary integer, " + "	createtime datetime default current_timestamp " + ")";
 		jdbcTemplate.execute(sql);
 		return true;
 	}
-
+	
+	// 取得單筆 employee 資料
+	@Override
 	public Employee get(Integer eid) {
 		String sql = "select eid, ename, salary, createtime from employee where eid=?";
 		return jdbcTemplate.queryForObject(sql, new Object[] {eid}, new BeanPropertyRowMapper<Employee>(Employee.class));
 	}
 	
+	// 新增 employee 資料
+	@Override
 	public int add(Employee emp) {
 		String sql = "insert into employee (ename, salary) values(?, ?)";
 		return jdbcTemplate.update(sql, emp.getEname(), emp.getSalary());
 	}
 	
+	// 修改 employee 資料
+	@Override
 	public int update(Employee emp) {
 		String sql = "update employee set ename=?, salary=? where eid=?";
 		return jdbcTemplate.update(sql, emp.getEname(), emp.getSalary(), emp.getEid());
@@ -43,18 +51,20 @@ public class EmployeeDao {
 	
 	//-------------------------------------------------------------------------------
 	
-	// 使用 BeanPropertyRowMapper
+	// 查詢全部資料-使用 BeanPropertyRowMapper
+	@Override
 	public List<Employee> queryAll() {
 		String sql = "select e.eid, e.ename, e.salary, e.createtime from employee e";
 		List<Employee> employees = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Employee.class));
 		return employees;
 	}
 
-	// 實作 RowMapper
+	// 查詢全部資料-實作 RowMapper
 	/*
 	 * public interface RowMapper<T> { T mapRow(ResultSet rs, int rowNum) throws
 	 * SQLException; }
 	 */
+	@Override
 	public List<Employee> queryAll2() {
 		String sql = "select e.eid, e.ename, e.salary, e.createtime from employee e";
 
@@ -76,8 +86,9 @@ public class EmployeeDao {
 		return employees;
 	}
 
-	// 使用 SimpleFlatMapper
+	// 查詢全部資料-使用 SimpleFlatMapper
 	// 調用：org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory
+	@Override
 	public List<Employee> queryAll3() {
 
 		ResultSetExtractor<List<Employee>> resultSetExtractor = 

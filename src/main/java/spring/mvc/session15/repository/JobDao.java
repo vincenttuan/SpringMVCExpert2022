@@ -3,8 +3,6 @@ package spring.mvc.session15.repository;
 import java.sql.ResultSet;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -17,11 +15,13 @@ import spring.mvc.session15.entity.Employee;
 import spring.mvc.session15.entity.Job;
 
 @Repository
-public class JobDao {
-	public static final int LIMIT = 5;
+public class JobDao implements IJobDao {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	// 建立 job 資料表
+	@Override
 	public boolean createTable() {
 		String sql = "create table if not exists job ( "
 					+ "	jid integer primary key, "
@@ -33,41 +33,51 @@ public class JobDao {
 		return true;
 	}
 	
+	// 取得單筆 job 資料
+	@Override
 	public Job get(Integer jid) {
 		String sql = "select jid, jname, eid from job where jid=?";
 		return jdbcTemplate.queryForObject(sql, new Object[] {jid}, new BeanPropertyRowMapper<Job>(Job.class));
 	}
 	
+	// 新增 job 資料
+	@Override
 	public int add(Job job) {
 		String sql = "insert into job (jname, eid) values(?, ?)";
 		return jdbcTemplate.update(sql, job.getJname(), job.getEid());
 	}
 	
+	// 修改 job 資料
+	@Override
 	public int update(Job job) {
 		String sql = "update job set jname=?, eid=? where jid=?";
 		return jdbcTemplate.update(sql, job.getJname(), job.getEid(), job.getJid());
 	}
 	
 	// 查詢所有筆數
+	@Override
 	public int getCount() {
 		String sql = "select count(*) from job";
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 	
 	// 不分頁全部查詢
+	@Override
 	public List<Job> query() {
 		return queryPage(-1);
 	}
 	
 	// 判斷 httpSession 值決定是否要分頁
-	public List<Job> query(Object value) {
-		if(value == null) {
+	@Override
+	public List<Job> query(Object httpSessionValue) {
+		if(httpSessionValue == null) {
 			return query();
 		}
-		return queryPage(Integer.parseInt(value + ""));
+		return queryPage(Integer.parseInt(httpSessionValue + ""));
 	}
 	
 	// 分頁查詢
+	@Override
 	public List<Job> queryPage(int offset) {
 		
 		ResultSetExtractor<List<Job>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
@@ -92,18 +102,20 @@ public class JobDao {
 
 	//-------------------------------------------------------------------------------
 	
-	// 使用 BeanPropertyRowMapper
+	// 查詢全部資料-使用 BeanPropertyRowMapper
+	@Override
 	public List<Job> queryAll() {
 		String sql = "select j.jid, j.jname, j.eid from job j";
 		List<Job> jobs = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Job.class));
 		return jobs;
 	}
 	
-	// 實作 RowMapper
+	// 查詢全部資料-實作 RowMapper
 	/* public interface RowMapper<T> {
 	 *     T mapRow(ResultSet rs, int rowNum) throws SQLException;
 	 * }
 	 * */
+	@Override
 	public List<Job> queryAll2() {
 		String sql = "select j.jid, j.jname, j.eid from job j";
 		RowMapper<Job> rm = (ResultSet rs, int rowNum) -> {
@@ -124,8 +136,9 @@ public class JobDao {
 		return jobs;
 	}
 	
-	// 使用 SimpleFlatMapper 
+	// 查詢全部資料-使用 SimpleFlatMapper 
 	// 調用：org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory
+	@Override
 	public List<Job> queryAll3() {
 		
 		ResultSetExtractor<List<Job>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()

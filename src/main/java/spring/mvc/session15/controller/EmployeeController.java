@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.mvc.session15.entity.Employee;
-import spring.mvc.session15.repository.EmployeeDao;
+import spring.mvc.session15.repository.IEmployeeDao;
 
 @Controller
 @RequestMapping("/session15/employee")
 public class EmployeeController {
 	
 	@Autowired
-	private EmployeeDao employeeDao;
+	private IEmployeeDao employeeDao;
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute Employee employee, Model model) {
