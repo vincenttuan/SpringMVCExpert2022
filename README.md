@@ -31,7 +31,7 @@
       <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session15/">Session 15、16 - SpringMVC 與 JdbcTemplate</a><br />
   </li>
   <li>
-      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session17/">Session 17 - SpringData 入門</a><br />
+      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session17/">Session 17 - SpringMVC 與 SpringData 入門</a><br />
   </li>
   <li>
       <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session18/">Session 18 - 統一例外處理</a><br />
