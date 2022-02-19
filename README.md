@@ -34,7 +34,7 @@
       <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session17/">Session 17 - SpringMVC 與 SpringData 入門</a><br />
   </li>
   <li>
-      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session18/">Session 18 - 統一例外處理</a><br />
+      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session18/">Session 18 - SpringMVC 統一例外處理</a><br />
   </li>
     <li>
       <a href="https://github.com/vincenttuan/SpringBoot-PSI-20211018">Session 19、20 - 專題：簡易進銷存管理（SpringBoot版）</a><br />
