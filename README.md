@@ -30,14 +30,12 @@
   <li>
       <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session15/">Session 15、16 - SpringMVC 與 JdbcTemplate</a><br />
   </li>
-  <!-- 
   <li>
-      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session17/">Session 17、18 - SpringMVC 與 SpringData</a><br />
+      <a href="https://github.com/vincenttuan/SpringMVCExpert2022/tree/main/src/main/java/spring/mvc/session17/">Session 17、18 - 統一例外處理</a><br />
   </li>
     <li>
       <a href="https://github.com/vincenttuan/SpringBoot-PSI-20211018">Session 19、20 - 專題：簡易進銷存管理（SpringBoot版）</a><br />
   </li>
--->
 </ul>
 
 <hr />
