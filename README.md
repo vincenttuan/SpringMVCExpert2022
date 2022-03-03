@@ -1,5 +1,13 @@
 # 第二階段：Java 企業產訓 SpringMVC 篇
-<b><a href="https://github.com/vincenttuan/SpringCoreExpert2022">第一階段：Java 企業產訓 SpringCore 篇：Session 01 ~ Session 07</a></b><p />
+測試通過版本：<br />
+&lt;spring.version>5.2.19.RELEASE&lt;/spring.version><br />
+&lt;spring.version>4.3.29.RELEASE&lt;/spring.version><p />
+
+<b><a href="https://github.com/vincenttuan/SpringCoreExpert2022">第一階段：Java 企業產訓 SpringCore 篇：Session 01 ~ Session 07</a></b><br />
+<b><a href="https://github.com/vincenttuan/SpringMVCExpert2022">第二階段：Java 企業產訓 SpringMVC 篇：Session 08 ~ Session 17</a></b><br />
+<b><a href="https://github.com/vincenttuan/SpringDataJPAExpert2022">第二階段：Java 企業產訓 SpringMVC-SpringData 篇：Session 18</a></b><br />
+<b><a href="https://github.com/vincenttuan/SpringBoot-PSI-20211018">基礎應用：Java 企業產訓基礎應用：Session 19 ~ Session 20</a></b><p />
+
 <a href="./pom.xml">Maven 配置檔：pom.xml</a><br />
 <a href="https://github.com/vincenttuan/SpringMVCExpert2022/blob/main/src/main/webapp/WEB-INF/web.xml">web.xml 部署檔：web.xml</a><br /><a href="https://github.com/vincenttuan/SpringMVCExpert2022/blob/main/src/main/webapp/WEB-INF/springmvc-servlet.xml">SpringMVC 配置檔：springmvc-servlet.xml</a><p />
 <ul>
