@@ -64,3 +64,4 @@ SQLite 外鍵約束關聯注意：
 官方文件：外鍵約束默認是禁用的（為了向後兼容），所以必須分別為每個數據庫連接啟用。
 所以可以在刪除方法或其他更好的地方下達以下命令：
 jdbcTemplate.execute("PRAGMA foreign_keys = ON");
+
