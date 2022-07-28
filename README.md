@@ -49,6 +49,9 @@
       <a href="https://github.com/vincenttuan/SpringBoot-PSI-20211018">Session 19、20 - 專題：簡易進銷存管理（SpringBoot版）</a><br />
   </li>
 </ul>
+<hr />
+Javascript Fetch
+https://www.oxxostudio.tw/articles/201908/js-fetch.html
 
 <hr />
 問題探討：<br />
