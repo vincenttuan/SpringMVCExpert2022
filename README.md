@@ -51,6 +51,7 @@
 </ul>
 <hr />
 Javascript Fetch
+自從 Fetch API 問世以來，我們就能使用漂亮的語法發送 HTTP Request 或取得網路資料
 https://www.oxxostudio.tw/articles/201908/js-fetch.html
 
 <hr />
